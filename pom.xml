@@ -9,6 +9,7 @@
         <module>pulse-monitoring-config-server</module>
         <module>pulse-monitoring-jumps-populator</module>
         <module>pulse-monitoring-jumps-notifier</module>
+        <module>pulse-monitoring-avg-reducer</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

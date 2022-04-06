@@ -1,5 +1,6 @@
 package telran.pulse.monitoring;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -10,6 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
 import java.util.function.Supplier;
 
 @SpringBootApplication
+@Slf4j
 public class PulseSourceAppl {
 
     int count = 0;
@@ -25,13 +27,13 @@ public class PulseSourceAppl {
     }
 
     private Sensor pulseRandomGeneration() {
-        if (count > 100) {
-            ctx.close();
-        }
+//        if (count > 100) {
+//            ctx.close();
+//        }
         int id = getRandomNumber(1, 10);
         int value = getRandomNumber(40, 250);
         Sensor sensor = new Sensor(id, value, count++);
-        System.out.printf("Sensor #%d has been sended\n", count);
+        log.debug("Sensor #{} with value {} has been sended", id, count);
         return sensor;
     }
 
