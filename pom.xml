@@ -6,6 +6,9 @@
         <module>pulse-monitoring-dto</module>
         <module>pulse-source</module>
         <module>pulse-analyser</module>
+        <module>pulse-monitoring-config-server</module>
+        <module>pulse-monitoring-jumps-populator</module>
+        <module>pulse-monitoring-jumps-notifier</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -39,7 +42,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
-
-
 </project>

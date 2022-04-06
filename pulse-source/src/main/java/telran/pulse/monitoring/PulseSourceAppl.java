@@ -25,12 +25,13 @@ public class PulseSourceAppl {
     }
 
     private Sensor pulseRandomGeneration() {
+        if (count > 100) {
+            ctx.close();
+        }
         int id = getRandomNumber(1, 10);
         int value = getRandomNumber(40, 250);
         Sensor sensor = new Sensor(id, value, count++);
-        if (count == 100) {
-            ctx.close();
-        }
+        System.out.printf("Sensor #%d has been sended\n", count);
         return sensor;
     }
 

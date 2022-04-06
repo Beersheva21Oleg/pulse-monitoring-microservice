@@ -8,15 +8,16 @@
         <groupId>telran</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
-    <artifactId>pulse-source</artifactId>
+    <artifactId>pulse-monitoring-jumps-populator</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>pulse-source</name>
-    <description>pulse-source</description>
+    <name>pulse-monitoring-jumps-populator</name>
+    <description>pulse-monitoring-jumps-populator</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.1</spring-cloud.version>
     </properties>
     <dependencies>
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter</artifactId>
@@ -24,6 +25,10 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -36,11 +41,6 @@
             <groupId>telran</groupId>
             <artifactId>pulse-monitoring-dto</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-config</artifactId>
-            <version>3.1.1</version>
         </dependency>
     </dependencies>
     <dependencyManagement>
