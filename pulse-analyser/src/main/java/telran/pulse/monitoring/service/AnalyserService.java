@@ -1,6 +1,5 @@
 package telran.pulse.monitoring.service;
 
-import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.function.StreamBridge;
@@ -10,11 +9,9 @@ import org.springframework.jmx.export.annotation.ManagedResource;
 import org.springframework.stereotype.Service;
 import telran.pulse.monitoring.dto.Sensor;
 import telran.pulse.monitoring.dto.SensorJump;
-import telran.pulse.monitoring.entities.SensorRedis;
+import telran.pulse.monitoring.entities.SensorLastValue;
 import telran.pulse.monitoring.repo.SensorRepository;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.function.Consumer;
 
 @Service
@@ -45,12 +42,12 @@ public class AnalyserService {
         log.trace("Received senseor id {}; value {}",
                 sensor.id,
                 sensor.value);
-        SensorRedis sensorRedis = sensorRepository.findById(sensor.id).orElse(null);
-        if (sensorRedis == null) {
+        SensorLastValue sensorLastValue = sensorRepository.findById(sensor.id).orElse(null);
+        if (sensorLastValue == null) {
             log.trace("for sensor id {} not found record in redis", sensor.id);
-            sensorRedis = new SensorRedis(sensor.id);
+            sensorLastValue = new SensorLastValue(sensor.id);
         } else {
-            int lastValue = sensorRedis.getLastValue();
+            int lastValue = sensorLastValue.getLastValue();
             int delta = Math.abs(lastValue - sensor.value);
             double percent = (double) delta / lastValue * 100;
             if (percent > jumpPercentThreshold) {
@@ -64,8 +61,8 @@ public class AnalyserService {
             }
         }
 
-        sensorRedis.addCurrentValue(sensor.value);
-        sensorRepository.save(sensorRedis);
+        sensorLastValue.addLastValue(sensor.value);
+        sensorRepository.save(sensorLastValue);
     }
 
     @ManagedOperation

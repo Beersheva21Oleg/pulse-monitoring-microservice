@@ -32,8 +32,8 @@ public class PulseSourceAppl {
 //        }
         int id = getRandomNumber(1, 10);
         int value = getRandomNumber(40, 250);
-        Sensor sensor = new Sensor(id, value, count++);
-        log.debug("Sensor #{} with value {} has been sended", id, count);
+        Sensor sensor = new Sensor(id, value);
+        log.debug("Sensor #{} with value {} has been sended", id, value);
         return sensor;
     }
 
