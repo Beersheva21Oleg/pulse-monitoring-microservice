@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: visits
+          uri: http://localhost:8082
+          predicates:
+            - Path=/visits/**
+        - id: sensors
+          uri: http://localhost:8081
+          predicates:
+            - Path=/sensors/**
+server:
+  port: 9090
